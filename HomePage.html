@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Speech Recognition</title>
+ 
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  
+    
+    <div class="sayThis">
+       Say: <span class="say"> </span>
+        
+    
+    </div>
+    
+    
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            var x = Math.floor(Math.random() * 4)+1;
+            
+            switch(x){
+                case 1:
+                    annyang.removeCommands();
+                    var commandAbility = {'ability': abilityFunction};
+                    annyang.addCommands(commandAbility);
+                    $(".say").html("ability");
+                    break;
+                case 2:
+                    annyang.removeCommands();
+                    var commandAbout= {'about': aboutFunction};
+                    annyang.addCommands(commandAbout);
+                    $(".say").html("about");
+                    break;
+                case 3:
+                    annyang.removeCommands();
+                    var commandBefore= {'before': beforeFunction};
+                    annyang.addCommands(commandBefore);
+                    $(".say").html("before");
+                    break;
+                case 4:
+                    annyang.removeCommands();
+                    var commandCapital= {'Capital': capitalFunction};
+                    annyang.addCommands(commandCapital);
+                    $(".say").html("Capital");
+                    break;     
+            }
+            annyang.start();
+            
+        })
+        function abilityFunction(){
+            $("body").css("Background-color", "#98ff98");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        function aboutFunction(){
+            $("body").css("Background-color", "#98ff98");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        function beforeFunction(){
+            $("body").css("Background-color", "#98ff98");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        function capitalFunction(){
+            $("body").css("Background-color", "#98ff98");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        
+    </script>
+</body>
+</html>
