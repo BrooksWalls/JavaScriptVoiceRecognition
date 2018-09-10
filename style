@@ -1,0 +1,23 @@
+body{
+    height: 100%;
+    margin: 0;
+}
+
+.openingContainer{
+    position: fixed;
+width: 100%;
+height: 100%;
+left: 0;
+top: 0;
+right:0;
+bottom:0;
+    background-color: #1d1d1d;
+}
+
+.sayThis{
+    height: 500px;
+width: 100%;
+position:absolute;
+top:100%;
+    background-color: aquamarine;
+}
