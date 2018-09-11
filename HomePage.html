@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Speech Recognition</title>
+ 
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body data-spy="scroll" data-target=".linkToSay" data-offset="50">
+  <div class="openingContainer">
+      <div class="buttonAndHeader">
+        <div class="header">Are you a bot?</div>
+                <button class="linkHome">
+                    <a class="linkToSay" href="#sayThisLocation">Click to find out</a>
+                </button>
+        </div>
+    </div>
+    
+    <div class="sayThis" id="sayThisLocation">
+       <div class="prompt">Say:</div><div class="say"> </div>
+        
+    
+    </div>
+    
+    
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+  // Add scrollspy to <body>
+  $('body').scrollspy({target: ".linkToSay", offset: 50});  
+        $(".linkToSay").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 200, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    }  // End if
+  })});
+                          
+        $(".linkHome").click(function(){
+            var x = Math.floor(Math.random() * 4)+1;
+            
+            switch(x){
+                case 1:
+                    annyang.removeCommands();
+                    var commandAbility = {'ability': abilityFunction};
+                    annyang.addCommands(commandAbility);
+                    $(".say").html("ability");
+                    $(".prompt").html("say");
+            $(".say").css("color","#1d1d1d");
+                    break;
+                case 2:
+                    annyang.removeCommands();
+                    var commandAbout= {'about': aboutFunction};
+                    annyang.addCommands(commandAbout);
+                    $(".say").html("about");
+                    $(".prompt").html("say");
+            $(".say").css("color","#1d1d1d");
+                    break;
+                case 3:
+                    annyang.removeCommands();
+                    var commandBefore= {'before': beforeFunction};
+                    annyang.addCommands(commandBefore);
+                    $(".say").html("before");
+                    $(".prompt").html("say");
+            $(".say").css("color","#1d1d1d");
+                    break;
+                case 4:
+                    annyang.removeCommands();
+                    var commandCapital= {'Capital': capitalFunction};
+                    annyang.addCommands(commandCapital);
+                    $(".say").html("Capital");
+                    $(".prompt").html("say");
+            $(".say").css("color","#1d1d1d");
+                    break;     
+            }
+            annyang.start();
+            
+        })
+        function abilityFunction(){
+            $(".sayThis").css("background-color", "#8ffe96;");
+            $(".say").html("correct");
+            $(".prompt").html("");
+            $(".say").css("color","#8ffe96");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        function aboutFunction(){
+             $(".sayThis").css("background-color", "#8ffe96;");
+            $(".say").html("correct");
+            $(".prompt").html("");
+            $(".say").css("color","#8ffe96");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        function beforeFunction(){
+            $(".sayThis").css("background-color", "#8ffe96;");
+            $(".say").html("correct");
+            $(".prompt").html("");
+            $(".say").css("color","#8ffe96");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        function capitalFunction(){
+            $(".sayThis").css("background-color", "#8ffe96;");
+            $(".say").html("correct");
+            $(".prompt").html("");
+            $(".say").css("color","#8ffe96");
+            responsiveVoice.speak("Correct");
+            annyang.abort();
+        }
+        
+        
+        
+// Select all links with hashes
+$('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
+    </script>
+</body>
+</html>
